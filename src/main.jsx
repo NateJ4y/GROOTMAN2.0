@@ -7,7 +7,7 @@ import {
 } from 'lucide-react'
 import './styles.css'
 
-const WHATSAPP_NUMBER = '' // Add the client's WhatsApp number in international format, digits only.
+const WHATSAPP_NUMBER = '27705897595' // South Africa: 070 589 7595
 
 const products = [
   { id: 'hoodie', name: 'Crown Graphic Hoodie', category: 'Tops', tag: 'STATEMENT PIECE', image: '/images/grootman-products.webp', position: '0% 0%', scale: '245% auto', description: 'The signature crowned-gorilla hoodie. A bold everyday layer from the GROOTMAN 2.0 collection.' },
