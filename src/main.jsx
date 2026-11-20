@@ -10,14 +10,14 @@ import './styles.css'
 const WHATSAPP_NUMBER = '' // Add the client's WhatsApp number in international format, digits only.
 
 const products = [
-  { id: 'tee', name: 'Signature Graphic Tee', category: 'Tops', tag: 'CORE PIECE', image: '/images/summer-campaign.jpg', position: '50% 64%', description: 'The signature GROOTMAN 2.0 graphic tee. A statement piece built around the crown.' },
-  { id: 'vest', name: 'Summer Statement Vest', category: 'Tops', tag: 'SUMMER COLLECTION', image: '/images/summer-campaign.jpg', position: '18% 58%', description: 'A bold sleeveless look from the GROOTMAN 2.0 summer direction.' },
-  { id: 'shorts', name: 'Signature Training Shorts', category: 'Bottoms', tag: 'SUMMER COLLECTION', image: '/images/summer-campaign.jpg', position: '20% 85%', description: 'Sport-inspired shorts with a confident streetwear attitude.' },
-  { id: 'hoodie', name: 'Crown Graphic Hoodie', category: 'Tops', tag: 'STATEMENT PIECE', image: '/images/apparel-lineup.jpg', position: '18% 35%', description: 'A heavyweight visual statement with the crowned gorilla identity.' },
-  { id: 'cap', name: 'GROOTMAN Snapback', category: 'Headwear', tag: 'EVERYDAY ESSENTIAL', image: '/images/summer-campaign.jpg', position: '46% 91%', description: 'Finish the fit with the signature GROOTMAN 2.0 crown mark.' },
-  { id: 'tracksuit', name: 'Signature Tracksuit', category: 'Sets', tag: 'CO-ORDINATED LOOK', image: '/images/apparel-lineup.jpg', position: '84% 72%', description: 'A coordinated look for a clean, confident streetwear fit.' },
-  { id: 'bag', name: 'GROOTMAN Utility Bag', category: 'Accessories', tag: 'ON THE MOVE', image: '/images/summer-campaign.jpg', position: '90% 70%', description: 'Carry the identity beyond the fit with a branded everyday bag.' },
-  { id: 'beanie', name: 'Crown Knit Beanie', category: 'Headwear', tag: 'COLD-WEATHER ESSENTIAL', image: '/images/apparel-lineup.jpg', position: '70% 42%', description: 'A clean cold-weather staple with the GROOTMAN signature.' },
+  { id: 'hoodie', name: 'Crown Graphic Hoodie', category: 'Tops', tag: 'STATEMENT PIECE', image: '/images/grootman-products.webp', position: '0% 0%', scale: '245% auto', description: 'The signature crowned-gorilla hoodie. A bold everyday layer from the GROOTMAN 2.0 collection.' },
+  { id: 'vest', name: 'Summer Statement Vest', category: 'Tops', tag: 'SUMMER COLLECTION', image: '/images/grootman-products.webp', position: '100% 0%', scale: '245% auto', description: 'A sleeveless statement with the unmistakable GROOTMAN 2.0 identity.' },
+  { id: 'tee', name: 'Signature Graphic Tee', category: 'Tops', tag: 'CORE PIECE', image: '/images/grootman-products.webp', position: '50% 100%', scale: '245% auto', description: 'The signature graphic tee. A clean staple built around the crowned gorilla.' },
+  { id: 'shorts', name: 'Signature Training Shorts', category: 'Bottoms', tag: 'SUMMER COLLECTION', image: '/images/grootman-products.webp', position: '0% 100%', scale: '245% auto', description: 'Sport-inspired shorts with a confident streetwear attitude.' },
+  { id: 'tracksuit', name: 'Signature Track Pants', category: 'Bottoms', tag: 'CO-ORDINATED LOOK', image: '/images/grootman-products.webp', position: '100% 100%', scale: '245% auto', description: 'A clean, coordinated look for everyday movement.' },
+  { id: 'cap', name: 'GROOTMAN Snapback', category: 'Headwear', tag: 'EVERYDAY ESSENTIAL', image: '/images/grootman-products.webp', position: '50% 32%', scale: '245% auto', description: 'Finish the fit with the signature GROOTMAN 2.0 crown mark.' },
+  { id: 'beanie', name: 'Crown Knit Beanie', category: 'Headwear', tag: 'COLD-WEATHER ESSENTIAL', image: '/images/grootman-products.webp', position: '78% 42%', scale: '245% auto', description: 'A cold-weather staple with the GROOTMAN signature.' },
+  { id: 'bag', name: 'GROOTMAN Gym Bag', category: 'Accessories', tag: 'ON THE MOVE', image: '/images/grootman-products.webp', position: '0% 100%', scale: '245% auto', description: 'Carry the identity beyond the fit with a branded everyday bag.' },
 ]
 
 const categories = ['All pieces', 'Tops', 'Bottoms', 'Sets', 'Headwear', 'Accessories']
@@ -144,7 +144,7 @@ function App() {
               {filtered.map((product, index) => (
                 <motion.article className="product-card" key={product.id} layout initial={{opacity:0,y:18}} animate={{opacity:1,y:0}} exit={{opacity:0,y:12}} transition={{duration:.28, delay:index*.025}}>
                   <button className="product-image-button" onClick={() => {setSelected(product); setSize('Not sure yet')}} aria-label={`View ${product.name}`}>
-                    <div className="product-image" style={{backgroundImage:`url(${product.image})`, backgroundPosition:product.position}} />
+                    <div className="product-image" style={{backgroundImage:`url(${product.image})`, backgroundPosition:product.position, backgroundSize:product.scale || 'cover'}} />
                     <span className="product-tag">{product.tag}</span>
                     <span className="quick-view">QUICK VIEW <ArrowUpRight size={14}/></span>
                   </button>
@@ -199,7 +199,7 @@ function App() {
         {selected && <div className="modal-backdrop" onMouseDown={e=>{if(e.target===e.currentTarget)setSelected(null)}}>
           <motion.div className="product-modal" initial={{opacity:0,y:20,scale:.98}} animate={{opacity:1,y:0,scale:1}} exit={{opacity:0,y:12,scale:.98}}>
             <button className="modal-close icon-button" onClick={()=>setSelected(null)} aria-label="Close"><X/></button>
-            <div className="modal-image" style={{backgroundImage:`url(${selected.image})`,backgroundPosition:selected.position}}/>
+            <div className="modal-image" style={{backgroundImage:`url(${selected.image})`,backgroundPosition:selected.position,backgroundSize:selected.scale || 'cover'}}/>
             <div className="modal-details">
               <div className="section-kicker">{selected.tag}</div>
               <h2>{selected.name}</h2>
@@ -221,7 +221,7 @@ function App() {
           <motion.aside className="bag-drawer" initial={{x:'100%'}} animate={{x:0}} exit={{x:'100%'}} transition={{type:'tween',duration:.28}}>
             <div className="drawer-head"><div><span className="section-kicker">YOUR SELECTION</span><h2>THE BAG <small>({bag.reduce((n,i)=>n+i.quantity,0)})</small></h2></div><button className="icon-button" onClick={()=>setBagOpen(false)} aria-label="Close bag"><X/></button></div>
             {bag.length === 0 ? <div className="empty-bag"><ShoppingBag size={34}/><h3>NOTHING IN THE BAG. YET.</h3><p>Find a piece that speaks to you.</p><button className="gold-button" onClick={()=>{setBagOpen(false);navTo('shop')}}>EXPLORE THE COLLECTION <ArrowRight size={16}/></button></div> :
-              <><div className="bag-items">{bag.map(item=><div className="bag-item" key={`${item.id}-${item.size}`}><div className="bag-thumb" style={{backgroundImage:`url(${item.image})`,backgroundPosition:item.position}}/><div className="bag-item-info"><h3>{item.name}</h3><span>Size: {item.size}</span><div className="bag-quantity"><button onClick={()=>updateQuantity(item.id,item.size,-1)}><Minus size={13}/></button><b>{item.quantity}</b><button onClick={()=>updateQuantity(item.id,item.size,1)}><Plus size={13}/></button></div></div><button className="remove-item" onClick={()=>updateQuantity(item.id,item.size,-item.quantity)} aria-label="Remove item"><X size={15}/></button></div>)}</div><div className="drawer-bottom"><p>Pricing and availability will be confirmed by the GROOTMAN 2.0 team.</p><button className="gold-button" onClick={()=>openWhatsApp(bag)}><MessageCircle size={17}/> SEND ORDER ON WHATSAPP <ArrowUpRight size={16}/></button><button className="clear-bag" onClick={()=>setBag([])}>CLEAR BAG</button></div></>}
+              <><div className="bag-items">{bag.map(item=><div className="bag-item" key={`${item.id}-${item.size}`}><div className="bag-thumb" style={{backgroundImage:`url(${item.image})`,backgroundPosition:item.position,backgroundSize:item.scale || 'cover'}}/><div className="bag-item-info"><h3>{item.name}</h3><span>Size: {item.size}</span><div className="bag-quantity"><button onClick={()=>updateQuantity(item.id,item.size,-1)}><Minus size={13}/></button><b>{item.quantity}</b><button onClick={()=>updateQuantity(item.id,item.size,1)}><Plus size={13}/></button></div></div><button className="remove-item" onClick={()=>updateQuantity(item.id,item.size,-item.quantity)} aria-label="Remove item"><X size={15}/></button></div>)}</div><div className="drawer-bottom"><p>Pricing and availability will be confirmed by the GROOTMAN 2.0 team.</p><button className="gold-button" onClick={()=>openWhatsApp(bag)}><MessageCircle size={17}/> SEND ORDER ON WHATSAPP <ArrowUpRight size={16}/></button><button className="clear-bag" onClick={()=>setBag([])}>CLEAR BAG</button></div></>}
           </motion.aside>
         </div>}
       </AnimatePresence>
