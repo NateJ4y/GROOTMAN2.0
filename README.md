@@ -16,12 +16,12 @@ npm run build
 npm run preview
 ```
 
-## Required visual assets
+## Brand assets
 
-Copy the two files from the companion `grootman-visual-assets.zip` into `public/images/`:
+The visual assets are committed in `public/images/`:
 
-- `grootman-hero.webp` — custom crowned-gorilla hero artwork
-- `grootman-products.webp` — supplied GROOTMAN apparel collage used by the clothing catalogue
+- `grootman-hero.webp` — custom crowned-gorilla hero artwork.
+- `grootman-products.webp` — supplied GROOTMAN apparel collage used across the clothing catalogue.
 
 ## Before launch
 
